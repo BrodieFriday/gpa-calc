@@ -151,17 +151,43 @@ public class GPA extends JFrame implements ActionListener{
       if(!class6CreditHrs.getText().equals("")){
         class6Hrs = Integer.parseInt(class6CreditHrs.getText());
       }
-      String grade = (String)class1Grade.getSelectedItem();
+      String gradeClass1 = (String)class1Grade.getSelectedItem();
+      String gradeClass2 = (String)class2Grade.getSelectedItem();
+      String gradeClass3 = (String)class3Grade.getSelectedItem();
+      String gradeClass4 = (String)class4Grade.getSelectedItem();
+      String gradeClass5 = (String)class5Grade.getSelectedItem();
 
            if (e.getActionCommand().equals("Calculate")) {
-               double c = calc.gradePoints(Double.parseDouble(class1CreditHrs.getText()),calc.QualityPoints(grade));
-               class1GradePoints.setText(""+decFormat.format(c));
-
-
+               double class1 = calc.gradePoints(Double.parseDouble(class1CreditHrs.getText()),calc.QualityPoints(gradeClass1));
+               class1GradePoints.setText(""+decFormat.format(class1));
+               double class2 = calc.gradePoints(Double.parseDouble(class2CreditHrs.getText()),calc.QualityPoints(gradeClass2));
+               class2GradePoints.setText(""+decFormat.format(class2));
+               double class3 = calc.gradePoints(Double.parseDouble(class3CreditHrs.getText()),calc.QualityPoints(gradeClass3));
+               class3GradePoints.setText(""+decFormat.format(class3));
+               double class4 = calc.gradePoints(Double.parseDouble(class4CreditHrs.getText()),calc.QualityPoints(gradeClass4));
+               class4GradePoints.setText(""+decFormat.format(class4));
+               double class5 = calc.gradePoints(Double.parseDouble(class5CreditHrs.getText()),calc.QualityPoints(gradeClass5));
+               class5GradePoints.setText(""+decFormat.format(class5));
 
                int totalCredits = calc.totalCredits(class1Hrs,class2Hrs,class3Hrs,class4Hrs,class5Hrs,class6Hrs);
                System.out.println(totalCredits);
-           }
+          }
+          if (e.getActionCommand().equals("Clear")) {
+            class1GradePoints.setText("");
+            class2GradePoints.setText("");
+            class3GradePoints.setText("");
+            class4GradePoints.setText("");
+            class5GradePoints.setText("");
+            class6GradePoints.setText("");
+
+            class1CreditHrs.setText("");
+            class2CreditHrs.setText("");
+            class3CreditHrs.setText("");
+            class4CreditHrs.setText("");
+            class5CreditHrs.setText("");
+            class6CreditHrs.setText("");
+          }
+        
 
  }
    public static void main(String[] args){
