@@ -7,7 +7,7 @@ public class GPA extends JFrame implements ActionListener{
 
    JComboBox<String> class1Grade,class2Grade,class3Grade,class4Grade,class5Grade,class6Grade;
    JTextField class1CreditHrs,class2CreditHrs,class3CreditHrs,class4CreditHrs,class5CreditHrs,class6CreditHrs,class1GradePoints
-   ,gradePoints,class2GradePoints,class3GradePoints,class4GradePoints,class5GradePoints,class6GradePoints;
+   ,gradePoints,class2GradePoints,class3GradePoints,class4GradePoints,class5GradePoints,class6GradePoints,GPA_final;
 
     public GPA(){
 
@@ -18,7 +18,10 @@ public class GPA extends JFrame implements ActionListener{
       // Title top center
       JLabel calculator = new JLabel("GPA Calculator");
       GPAContainer.add(calculator);
-      calculator.setBounds(170, 20, 100, 20);
+      calculator.setBounds(170, 20, 200, 20);
+      calculator.setFont(new Font("Times New Roman",Font.PLAIN,18));
+
+      
       // Title left column
       JLabel creditHours = new JLabel("Credit Hours");
       GPAContainer.add(creditHours);
@@ -77,6 +80,10 @@ public class GPA extends JFrame implements ActionListener{
        GPAContainer.add(class6GradePoints);
        class6GradePoints.setBounds(330, 250, 100, 20);
 
+      GPA_final = new JTextField("");
+      GPAContainer.add(GPA_final);
+      GPA_final.setBounds(170, 350, 100, 20);
+
       // Button for calculating the grade points
       JButton calc = new JButton("Calculate");
       GPAContainer.add(calc);
@@ -133,18 +140,13 @@ public class GPA extends JFrame implements ActionListener{
       int class4Hrs = 0;
       int class5Hrs = 0;
       int class6Hrs = 0;
-      if(!class1CreditHrs.getText().equals("")){
-        class1Hrs = Integer.parseInt(class1CreditHrs.getText());
-      }
-      if(!class2CreditHrs.getText().equals("")){
-        class2Hrs = Integer.parseInt(class2CreditHrs.getText());
-      }
-      if(!class3CreditHrs.getText().equals("")){
-        class3Hrs = Integer.parseInt(class3CreditHrs.getText());
-      }
-      if(!class4CreditHrs.getText().equals("")){
-        class4Hrs = Integer.parseInt(class4CreditHrs.getText());
-      }
+      double class1 = 0;
+      double class2 = 0;
+      double class3 = 0;
+      double class4 = 0;
+      double class5 = 0;
+      double class6 = 0;
+
       if(!class5CreditHrs.getText().equals("")){
         class5Hrs = Integer.parseInt(class5CreditHrs.getText());
       }
@@ -156,21 +158,44 @@ public class GPA extends JFrame implements ActionListener{
       String gradeClass3 = (String)class3Grade.getSelectedItem();
       String gradeClass4 = (String)class4Grade.getSelectedItem();
       String gradeClass5 = (String)class5Grade.getSelectedItem();
+      String gradeClass6 = (String)class6Grade.getSelectedItem();
 
            if (e.getActionCommand().equals("Calculate")) {
-               double class1 = calc.gradePoints(Double.parseDouble(class1CreditHrs.getText()),calc.QualityPoints(gradeClass1));
+             if(!class1CreditHrs.getText().equals("")){
+               class1 = calc.gradePoints(Double.parseDouble(class1CreditHrs.getText()),calc.QualityPoints(gradeClass1));
                class1GradePoints.setText(""+decFormat.format(class1));
-               double class2 = calc.gradePoints(Double.parseDouble(class2CreditHrs.getText()),calc.QualityPoints(gradeClass2));
+               class1Hrs = Integer.parseInt(class1CreditHrs.getText());
+             }
+             if(!class2CreditHrs.getText().equals("")){
+               class2 = calc.gradePoints(Double.parseDouble(class2CreditHrs.getText()),calc.QualityPoints(gradeClass2));
                class2GradePoints.setText(""+decFormat.format(class2));
-               double class3 = calc.gradePoints(Double.parseDouble(class3CreditHrs.getText()),calc.QualityPoints(gradeClass3));
+               class2Hrs = Integer.parseInt(class2CreditHrs.getText());
+             }
+             if(!class3CreditHrs.getText().equals("")){
+               class3 = calc.gradePoints(Double.parseDouble(class3CreditHrs.getText()),calc.QualityPoints(gradeClass3));
                class3GradePoints.setText(""+decFormat.format(class3));
-               double class4 = calc.gradePoints(Double.parseDouble(class4CreditHrs.getText()),calc.QualityPoints(gradeClass4));
+               class3Hrs = Integer.parseInt(class3CreditHrs.getText());
+             }
+             if(!class4CreditHrs.getText().equals("")){
+               class4 = calc.gradePoints(Double.parseDouble(class4CreditHrs.getText()),calc.QualityPoints(gradeClass4));
                class4GradePoints.setText(""+decFormat.format(class4));
-               double class5 = calc.gradePoints(Double.parseDouble(class5CreditHrs.getText()),calc.QualityPoints(gradeClass5));
+               class4Hrs = Integer.parseInt(class4CreditHrs.getText());
+             }
+             if(!class5CreditHrs.getText().equals("")){
+               class5 = calc.gradePoints(Double.parseDouble(class5CreditHrs.getText()),calc.QualityPoints(gradeClass5));
                class5GradePoints.setText(""+decFormat.format(class5));
+               class5Hrs = Integer.parseInt(class5CreditHrs.getText());
+             }
+             if(!class6CreditHrs.getText().equals("")){
+               class6 = calc.gradePoints(Double.parseDouble(class6CreditHrs.getText()),calc.QualityPoints(gradeClass6));
+               class6GradePoints.setText(""+decFormat.format(class6));
+               class6Hrs = Integer.parseInt(class5CreditHrs.getText());
+             }
 
                int totalCredits = calc.totalCredits(class1Hrs,class2Hrs,class3Hrs,class4Hrs,class5Hrs,class6Hrs);
-               System.out.println(totalCredits);
+               double totalPoints = calc.totalGradePoints(class1,class2,class3,class4,class5,class6);
+               double GPA = totalPoints / totalCredits;
+               GPA_final.setText("GPA: " + decFormat.format(GPA));
           }
           if (e.getActionCommand().equals("Clear")) {
             class1GradePoints.setText("");

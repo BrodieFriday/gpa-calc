@@ -8,10 +8,16 @@ class Calculation{
      return c;
    }
    
-   public int totalCredits(int class1, int class2, int class3, int class4, int class5, int class6 ){
+   public double totalGradePoints(double class1GradePoints, double class2GradePoints, double class3GradePoints, double class4GradePoints, double class5GradePoints, double class6GradePoints){
+
+      double totalGradePoints = class1GradePoints + class2GradePoints + class3GradePoints + class4GradePoints + class5GradePoints + class6GradePoints;
+      return totalGradePoints;
+   }
+
+   public int totalCredits(int class1Credits, int class2Credits, int class3Credits, int class4Credits, int class5Credits, int class6Credits){
    
-   int total = class1 + class2 + class3 + class4 + class5 + class6;
-   return total;
+   int totalCredits = class1Credits + class2Credits + class3Credits + class4Credits + class5Credits + class6Credits;
+   return totalCredits;
    }
    
    
