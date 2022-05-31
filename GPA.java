@@ -20,8 +20,6 @@ public class GPA extends JFrame implements ActionListener{
       GPAContainer.add(calculator);
       calculator.setBounds(170, 20, 200, 20);
       calculator.setFont(new Font("Times New Roman",Font.PLAIN,18));
-
-      
       // Title left column
       JLabel creditHours = new JLabel("Credit Hours");
       GPAContainer.add(creditHours);
@@ -96,7 +94,7 @@ public class GPA extends JFrame implements ActionListener{
       clearButton.addActionListener(this);
       
       //Items inside combobox
-      String[] tempLabels = {"A","A-","B+","B","B-","C+","C","C-","D+","D","D-","F"};
+      String[] tempLabels = {"N/A","A","A-","B+","B","B-","C+","C","C-","D+","D","D-","F"};
      
       
       // Comboboxes for picking grade
@@ -147,12 +145,6 @@ public class GPA extends JFrame implements ActionListener{
       double class5 = 0;
       double class6 = 0;
 
-      if(!class5CreditHrs.getText().equals("")){
-        class5Hrs = Integer.parseInt(class5CreditHrs.getText());
-      }
-      if(!class6CreditHrs.getText().equals("")){
-        class6Hrs = Integer.parseInt(class6CreditHrs.getText());
-      }
       String gradeClass1 = (String)class1Grade.getSelectedItem();
       String gradeClass2 = (String)class2Grade.getSelectedItem();
       String gradeClass3 = (String)class3Grade.getSelectedItem();
