@@ -1,0 +1,29 @@
+<table mat-table [dataSource]="dataSource">
+
+    <!-- Credit Hours Column -->
+    <ng-container matColumnDef="creditHours">
+      <th mat-header-cell *matHeaderCellDef>Credit Hours</th>
+      <td mat-cell *matCellDef="let element"><input matInput type="text"></td>
+    </ng-container>
+  
+    <!-- Letter Grade Column -->
+    <ng-container matColumnDef="letterGrade">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <mat-select [(value)]="element.points">
+            <mat-option *ngFor="let point of points" [value]="point.value">
+              {{ point.label }}
+            </mat-option>
+          </mat-select>
+      </td>
+    </ng-container>
+  
+    <!-- Grade Point Column -->
+    <ng-container matColumnDef="gradePoints">
+      <th mat-header-cell *matHeaderCellDef>Grade Points</th>
+      <td mat-cell *matCellDef="let element"><input matInput type="text"></td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
